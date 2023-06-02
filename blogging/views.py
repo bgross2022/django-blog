@@ -9,13 +9,13 @@ from django.views.generic.detail import DetailView
 
 
 class BloggingListView(ListView):
-    template_name = 'blogging/list.html'
+    template_name = "blogging/list.html"
 
     def get_queryset(self):
         self.published = Post.objects.exclude(published_date__exact=None)
-        return self.published.order_by('-published_date')
+        return self.published.order_by("-published_date")
 
 
 class BloggingDetailView(DetailView):
     model = Post
-    template_name = 'blogging/detail.html'
+    template_name = "blogging/detail.html"

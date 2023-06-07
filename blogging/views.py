@@ -1,4 +1,5 @@
 from typing import Any
+from django.db import models
 from django.db.models.query import QuerySet
 from django.shortcuts import render
 from django.http import HttpResponse, HttpResponseRedirect, Http404
@@ -17,5 +18,7 @@ class BloggingListView(ListView):
 
 
 class BloggingDetailView(DetailView):
-    model = Post
     template_name = "blogging/detail.html"
+
+    def get_queryset(self):
+        return Post.objects.exclude(published_date__exact=None)
